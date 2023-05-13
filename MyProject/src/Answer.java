@@ -1,8 +1,8 @@
 public class Answer {
-    protected int number;
-    private String answer;
+    private final int number;
+    private final String answer;
 
-    protected Boolean isCorrect;
+    private final Boolean isCorrect;
 
     public Answer(int number, String answer, Boolean isCorrect) {
         this.number = number;
@@ -12,5 +12,13 @@ public class Answer {
 
     public void printAnswer(){
         System.out.println(number + ") " + answer);
+    }
+
+    public int getAnswerNum() {
+        return number;
+    }
+
+    public Boolean getCorrect() {
+        return isCorrect;
     }
 }

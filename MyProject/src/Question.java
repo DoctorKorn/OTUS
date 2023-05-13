@@ -1,6 +1,6 @@
 public class Question {
-    private int number;
-    private String question;
+    private final int number;
+    private final String question;
     private final Answer [] answers;
 
     public Question(int number, String question, Answer[] answers) {
@@ -18,8 +18,8 @@ public class Question {
 
     public boolean CheckAnswer(int answerNumber){
         for (Answer i : answers){
-            if (i.number == answerNumber){
-                return i.isCorrect;
+            if (i.getAnswerNum() == answerNumber){
+                return i.getCorrect();
             };
         }
         return false;
