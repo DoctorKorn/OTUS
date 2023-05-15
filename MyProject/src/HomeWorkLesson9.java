@@ -3,10 +3,9 @@ import java.util.Scanner;
 public class HomeWorkLesson9 {
 
     public static void main(String[] args) {
-        ProcessTest(initArrayQuestion());
+        ProcessTest();
     }
-
-    public static Question [] initArrayQuestion(){
+    public static void ProcessTest() {
         Question[] questions = new Question []{
                 new Question(1,
                         "На какой реке стоит город Санкт-Петербург?",
@@ -27,29 +26,18 @@ public class HomeWorkLesson9 {
                                 new Answer(3, "Ладожское", false),
                                 new Answer(4, "Виктория", false)})
         };
-        return questions;
-    }
-    public static void ProcessTest(Question[] arrayQuestion) {
         int correctCount = 0, wrongCount = 0;
-        Scanner scanner = new Scanner(System.in);
-        for (Question i : arrayQuestion){
-            //Вывод вопроса и вариантов ответа на экран
-            i.printQuestion();
-            System.out.print("Ваш ответ: ");
-            //Считываем с консоли ответ пользователя
-            int answer = scanner.nextInt();
-            //Проверяем правильность ответа
-            Boolean correct = i.CheckAnswer(answer);
+        for (Question i : questions){
             //Проверяем ответ и выводим результат
-            if (correct){
+            if (i.ask()){
                 correctCount++;
                 System.out.println("Ваш ответ верный!");
+                System.out.println();
             } else {
                 wrongCount++;
                 System.out.println("Ваш ответ неверный!");
+                System.out.println();
             };
-            // а также увеличиваем счетчики правильных и неправильных ответов
-            System.out.println();
         }
         //Выводим общий результат
         System.out.println("Ваш результат: правильно " + correctCount + ", неправильно " + wrongCount);

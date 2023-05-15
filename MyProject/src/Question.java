@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Question {
     private final int number;
     private final String question;
@@ -9,16 +11,24 @@ public class Question {
         this.answers = answers;
     }
 
-    public void printQuestion(){
-        System.out.println(number + ". " + question);
+    public boolean ask() {
+        Scanner scanner = new Scanner(System.in);
+        boolean correct = false;
+        // Вывод вопроса на экран
+        System.out.print(this.number + ". " + this.question);
+        System.out.println();
+        //Вывод вариантов ответа на экран
         for (Answer i : answers){
-            i.printAnswer();
+            System.out.print(i.getAnswer());
+            System.out.println();
         }
-    }
-
-    public boolean CheckAnswer(int answerNumber){
+        System.out.println();
+        System.out.print("Ваш ответ: ");
+        //Считываем с консоли ответ пользователя
+        int answer = scanner.nextInt();
+        //Проверяем правильность ответа
         for (Answer i : answers){
-            if (i.getAnswerNum() == answerNumber){
+            if (i.getNumber() == answer){
                 return i.getCorrect();
             };
         }

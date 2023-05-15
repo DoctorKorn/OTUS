@@ -10,15 +10,11 @@ public class Answer {
         this.isCorrect = isCorrect;
     }
 
-    public void printAnswer(){
-        System.out.println(number + ") " + answer);
+    public String getAnswer(){ return this.number + ") " + this.answer; }
+
+    public boolean getCorrect() {
+        return this.isCorrect;
     }
 
-    public int getAnswerNum() {
-        return number;
-    }
-
-    public Boolean getCorrect() {
-        return isCorrect;
-    }
+    public int getNumber() { return number; }
 }
