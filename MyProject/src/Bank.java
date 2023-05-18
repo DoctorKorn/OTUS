@@ -21,16 +21,21 @@ public class Bank {
     }
     // получение клиента по счету (не самый быстрый поиск по значению!!!)
     public Client getClientByAccountSlow (Account account) {
+//        for (Map.Entry<Client, List<Account>> entry : this.cliacc.entrySet()) {
+//            List<Account> accountList = entry.getValue();
+//            if (accountList.isEmpty()) {
+//                return null;
+//            } else {
+//                for (int i = 0; i < accountList.size(); i++ ) {
+//                    if (Objects.equals(account, accountList.get(i))) {
+//                        return entry.getKey();
+//                    }
+//                }
+//            }
+//        }
         for (Map.Entry<Client, List<Account>> entry : this.cliacc.entrySet()) {
-            List<Account> accountList = entry.getValue();
-            if (accountList.isEmpty()) {
-                return null;
-            } else {
-                for (int i = 0; i < accountList.size(); i++ ) {
-                    if (Objects.equals(account, accountList.get(i))) {
-                        return entry.getKey();
-                    }
-                }
+            if (entry.getValue().contains(account)) {
+                return entry.getKey();
             }
         }
         return null;
