@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Bank {
     // для быстрого поиска счетов по клиенту
-    private Map<Client, List<Account>> cliacc = new HashMap<>();
+    private Map<Client, Set<Account>> cliacc = new HashMap<>();
     // для быстрого поиска клиента по счету
     private Map<Account, Client> acccli = new HashMap<>();
 
@@ -11,12 +11,12 @@ public class Bank {
     }
 
     public void addAccountToClient(Account account, Client client){
-        this.cliacc.putIfAbsent(client, new ArrayList<>());
+        this.cliacc.putIfAbsent(client, new HashSet<>());
         this.cliacc.get(client).add(account);
         this.acccli.put(account, client);
     }
     // получение счетов по клиенту
-    public List<Account> getClientAccount (Client client) {
+    public Set<Account> getClientAccount (Client client) {
         return this.cliacc.get(client);
     }
     // получение клиента по счету (не самый быстрый поиск по значению!!!)
@@ -33,7 +33,7 @@ public class Bank {
 //                }
 //            }
 //        }
-        for (Map.Entry<Client, List<Account>> entry : this.cliacc.entrySet()) {
+        for (Map.Entry<Client, Set<Account>> entry : this.cliacc.entrySet()) {
             if (entry.getValue().contains(account)) {
                 return entry.getKey();
             }

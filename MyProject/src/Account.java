@@ -1,13 +1,13 @@
 import java.util.Objects;
 
 public class Account {
-    private final String accountNumber;
+    private final String number;
     public Account(String accountNumber) {
-        this.accountNumber = accountNumber;
+        this.number = accountNumber;
     }
 
     public String getAccountNumber() {
-        return accountNumber;
+        return number;
     }
 
     @Override
@@ -15,11 +15,11 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(accountNumber, account.accountNumber);
+        return Objects.equals(number, account.number);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountNumber);
+        return Objects.hash(number);
     }
 }

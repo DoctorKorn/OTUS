@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.Set;
 
 public class HomeWorkLesson13 {
     public static void main(String[] args) {
@@ -6,33 +6,28 @@ public class HomeWorkLesson13 {
     }
     private static void initBankWithClientsAccounts() {
         Bank bank = new Bank();
-        Client petrov = new Client("Петров", 31);
-        bank.addClient(petrov);
-        bank.addAccountToClient(new Account("40817810900000000001"), petrov);
-        bank.addAccountToClient(new Account("42301810400000000001"), petrov);
+        bank.addClient(new Client("Петров", 31));
+        bank.addAccountToClient(new Account("40817810900000000001"), new Client("Петров", 31));
+        bank.addAccountToClient(new Account("42301810400000000001"), new Client("Петров", 31));
 
-        Client ivanov = new Client("Иванов", 25);
-        bank.addClient(ivanov);
-        bank.addAccountToClient(new Account("40817810900000000002"), ivanov);
+        bank.addClient(new Client("Иванов", 25));
+        bank.addAccountToClient(new Account("40817810900000000002"), new Client("Иванов", 25));
 
-        Client smirnov = new Client("Смирнов", 38);
-        bank.addClient(smirnov);
-        bank.addAccountToClient(new Account("40817810900000000003"), smirnov);
+        bank.addClient(new Client("Смирнов", 38));
+        bank.addAccountToClient(new Account("40817810900000000003"), new Client("Смирнов", 38));
 
-        Client kuznetsov = new Client("Кузнецов", 16);
-        bank.addClient(kuznetsov);
-        bank.addAccountToClient(new Account("40817810900000000004"), kuznetsov);
+        bank.addClient(new Client("Кузнецов", 16));
+        bank.addAccountToClient(new Account("40817810900000000004"), new Client("Кузнецов", 16));
 
-        Client sidorov = new Client("Сидоров", 53);
-        bank.addClient(sidorov);
-        bank.addAccountToClient(new Account("40817810900000000005"), sidorov);
+        bank.addClient(new Client("Сидоров", 53));
+        bank.addAccountToClient(new Account("40817810900000000005"), new Client("Сидоров", 53));
 
-        List<Account> accountList = bank.getClientAccount(petrov);
-        System.out.println("Поиск счёта по клиенту " + petrov.getName() + ":");
-        if (accountList == null) {
-            System.out.println("Не найдены счета по клиенту " + petrov.getName());
+        Set<Account> accountSet = bank.getClientAccount(new Client("Петров", 31));
+        System.out.println("Поиск счёта по клиенту " + new Client("Петров", 31).getName() + ":");
+        if (accountSet == null) {
+            System.out.println("Не найдены счета по клиенту " + new Client("Петров", 31).getName());
         } else {
-            for (Account s : accountList) {
+            for (Account s : accountSet) {
                 System.out.println(s.getAccountNumber());
             }
         }
