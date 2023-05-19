@@ -12,7 +12,7 @@ public class ExceptionsTest {
 
     public static void throwOwnExceptionExample(int a) throws NegativeValueException {
         if (a < 0) {
-            throw new NegativeValueException();
+            throw new NegativeValueException("Отрицательное значение недопустимо!");
         }
     }
 

@@ -11,7 +11,12 @@ public class HomeWorkLesson14 {
         System.out.println("---------------------------------------");
         System.out.println("Проверка получения исключения ArrayIndexOutOfBoundsException");
         System.out.println("---------------------------------------");
-        testOutOfBoundException();
+        try {
+            testOutOfBoundException();
+        } catch(Exception e) {
+            System.out.println("Печать стэка в main");
+            e.printStackTrace(System.out);
+        }
         System.out.println("---------------------------------------");
         System.out.println("Проверка получения IO исключения и работы try with resources");
         System.out.println("---------------------------------------");
@@ -24,16 +29,27 @@ public class HomeWorkLesson14 {
     public static void testOwnException() {
         try {
             ExceptionsTest.throwOwnExceptionExample(-1);
-        } catch (NegativeValueException nv) {
-            System.out.println(nv.getMessage());
+        } catch (NegativeValueException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public static void testOutOfBoundException() {
+    public static void testOutOfBoundException1() throws ArrayIndexOutOfBoundsException {
+            try {
+                ExceptionsTest.throwOutOfBoundException(6);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Печать стэка в testOutOfBoundException1");
+                e.printStackTrace(System.out);
+                throw e;
+            }
+    }
+    public static void testOutOfBoundException() throws Exception {
         try {
-            ExceptionsTest.throwOutOfBoundException(6);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Исключение ArrayIndexOutOfBoundsException: " + e.getMessage());
+            testOutOfBoundException1();
+        } catch (Exception e) {
+            System.out.println("Печать стэка в testOutOfBoundException");
+            e.printStackTrace(System.out);
+            throw new Exception("Что-то случилось в testOutOfBoundException1");
         }
     }
     public static void testExceptions() {
