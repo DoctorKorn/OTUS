@@ -6,6 +6,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class TestDice {
+    @DisplayName("Игра в кости: Проверка значений")
+    @Test
+    public void testDiceImplRollValues(){
+        Dice actual = new DiceImpl();
+        int actualValue = actual.roll();
+        boolean actualBool = false;
+        if (actualValue >= 1 && actualValue <= 6){
+            actualBool = true;
+        }
+        try{
+            Assertions.assertTrue(actualBool);
+            System.out.println("Игра в кости: Проверка значений - passed");
+        }catch(AssertionError e){
+            System.err.println("Игра в кости: Проверка значений - failed");
+            throw e;
+        }
+    }
     @DisplayName("Игра в кости: Проверка значений вне допустимого интервала")
     @Test
     public void testDiceImplRollWrongInterval(){
