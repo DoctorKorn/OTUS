@@ -1,0 +1,113 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление и подсчет среднего возраста студентов</title>
+    <style>      
+        .data-tab {
+            border: 1px solid steelblue;
+            width: 500px;
+            border-collapse: collapse;
+            margin-bottom: 50px;
+        }
+
+        .data-tab tr td {
+            border: 1px solid steelblue;
+        }
+
+        .input-form {
+            border: 1px solid steelblue;
+            width: 300px;
+        }
+    </style>
+    
+    <script>
+        "use strict"
+
+        function CalcAvgAge() {
+            const dataTab = document.getElementById("dataTab");
+            let avgAgeValue = document.getElementById("averageAge");
+            let sumAge = 0;
+            let avgAge = 0;
+            const rowCount = dataTab.rows.length - 3;
+            for (var i = 1; i <= rowCount; i++) {
+               sumAge = sumAge + parseFloat(dataTab.rows[i].cells[3].innerHTML);
+            }
+            avgAge = parseFloat(sumAge / rowCount);
+            avgAgeValue.innerHTML = Math.round(avgAge);
+        }
+        function addStudent() {
+            const dataTab = document.getElementById("dataTab");
+            let studentName = document.getElementById("studentName").value;
+            let studentBirthDate = document.getElementById("studentBirthDate").value;
+            let studentSex = document.getElementById("studentSex").value;
+            let studentAge = Math.floor((new Date() - new Date(studentBirthDate))/1000/60/60/24/365);
+            const newRow = dataTab.insertRow(dataTab.rows.length-2);
+            
+            let newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentName));
+            newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentSex));
+            newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentBirthDate));
+            newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentAge));
+            CalcAvgAge();
+        }
+    
+    </script>
+    
+</head>
+
+<body>
+
+    <h2>
+        Форма добавления информации о студенте
+    </h2>
+
+    <div class = "input-form">
+        <br/>
+        <label style = "margin-left:5px"> 
+            Имя студента:
+            <input id = "studentName" type = "text" style = "width:150px;margin-left:10px">
+        </label><br/>
+        <label  style = "margin-left:5px">
+            Дата рождения:
+	    <input id = "studentBirthDate" type = "date" style = "width:150px">
+        </label><br/>
+        <label style = "margin-left:5px">
+            Пол:
+            <select id = "studentSex" style = "width:150px;margin-left:75px">
+                <option>Мужской</option>
+                <option>Женский</option>
+            </select><br/>
+            <button onclick = "addStudent()" style = "margin-left:5px">Добавить</button><br/>
+        </label><br/>
+    </div>
+
+    <h2>Таблица студентов</h2>
+    <table class="data-tab" id="dataTab">
+        <thead>
+            <tr>
+                <td style = "width:250px" align = center valign = middle>Имя студента</td>
+		<td style = "width:50px" align = center valign = middle>Пол</td>
+		<td style = "width:100px" align = center valign = middle>Дата рождения</td>
+		<td style = "width:100px" align = center valign = middle>Возраст</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td colspan = "4">&nbsp;</td> 
+            </tr>
+        </tbody>
+       <tfoot>
+          <tr>
+              <td colspan = "3">Средний возраст студентов</td>
+              <td id = "averageAge"></td>
+          </tr>    
+      </tfoot>
+    </table>
+
+</body>
+</html>
